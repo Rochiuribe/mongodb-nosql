@@ -1,0 +1,62 @@
+use('dbTechStore');
+
+//1: Eliminar un equipo por _id
+
+const equipoAEliminar = db.equipos.findOne();
+print(`\nELIMINACIÓN 1: Eliminar equipo por _id`);
+print(`Equipo a eliminar: ${equipoAEliminar.Nombre}`);
+
+const idEliminar = equipoAEliminar._id;
+
+// Eliminar por _id
+const resultado1 = db.equipos.deleteOne({ _id: idEliminar });
+print(`Eliminado correctamente: ${equipoAEliminar.Nombre}`);
+print(`Total de documentos eliminados: ${resultado1.deletedCount}\n`);
+
+//2: Eliminar equipos con stock = 30
+
+
+const equiposStock30 = db.equipos.find({ Stock: 30 }).toArray();
+print(`   Equipos con stock = 30:`);
+equiposStock30.forEach(eq => {
+    print(`${eq.Nombre} - Stock: ${eq.Stock}`);
+});
+
+const resultado2 = db.equipos.deleteMany({ Stock: 30 });
+print(`Eliminados correctamente: ${resultado2.deletedCount} equipo(s)`);
+print(`Total de documentos eliminados: ${resultado2.deletedCount}\n`);
+
+//3: Eliminar a María López
+
+print(`ELIMINACIÓN 3: Eliminar a María López`);
+// Verificar antes de eliminar
+const maria = db.clientes.findOne({ Nombre: "María", Apellido: "López" });
+if (maria) {
+    print(`Cliente a eliminar: ${maria.Nombre} ${maria.Apellido} (Código: ${maria.Codigo})`);
+}
+
+const resultado3 = db.clientes.deleteOne({ Nombre: "María", Apellido: "López" });
+print(`Eliminado correctamente: María López`);
+print(`Total de documentos eliminados: ${resultado3.deletedCount}\n`);
+
+//4: Eliminar todos los documentos de equipos
+
+print(`ELIMINACIÓN 4: Eliminar TODOS los documentos de equipos`);
+const totalEquiposAntes = db.equipos.countDocuments();
+print(`   Equipos antes de eliminar: ${totalEquiposAntes}`);
+
+const resultado4 = db.equipos.deleteMany({});
+print(`Eliminados correctamente: ${resultado4.deletedCount} equipo(s)`);
+print(`Total de documentos eliminados: ${resultado4.deletedCount}`);
+print(`La colección 'equipos' está ahora VACÍA\n`);
+
+//5: Eliminar la colección clientes
+
+print(`5: Eliminar la colección completa de clientes`);
+const totalClientesAntes = db.clientes.countDocuments();
+print(`Clientes antes de eliminar la colección: ${totalClientesAntes}`);
+
+const resultado5 = db.clientes.drop();
+print(`Eliminado correctamente: Colección 'clientes' completa`);
+print(`Colección eliminada: ${resultado5 ? 'SÍ' : 'NO'}`);
+print(`La colección 'clientes' ya NO EXISTE en la base de datos\n`); 

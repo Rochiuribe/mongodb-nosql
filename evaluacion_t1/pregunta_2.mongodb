@@ -1,0 +1,34 @@
+use('dbTechStore');
+
+// 1.	Listar los 3 primeros documentos de equipos.
+
+db.equipos.find().limit(3).forEach(equipo => {
+    printjson(equipo);
+});
+
+// 2.	Listar los 2 primeros documentos de clientes.
+
+db.clientes.find().limit(2).forEach(cliente => {
+    printjson(cliente);
+});
+
+// 3.	Listar solamente los atributos: nombre, apellido, celular y categorías de interés de los clientes.
+
+db.clientes.find(
+    {},
+    {
+        Nombre: 1,
+        Apellido: 1,
+        Celular: 1,
+        CategoriasDeInteres: 1,
+        _id: 0
+    }
+).forEach(cliente => {
+    printjson(cliente);
+});
+
+// 4.	Listar los equipos cuya cantidad de stock sea igual o mayor que 100
+
+db.equipos.find({ Stock: { $gte: 100 } }).forEach(equipo => {
+    printjson(equipo);
+});

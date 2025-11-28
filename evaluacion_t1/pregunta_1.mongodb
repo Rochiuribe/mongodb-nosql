@@ -1,0 +1,146 @@
+// pregunta 1
+//1.	Crear una base de datos llamada dbTechStore.
+
+use('dbTechStore');
+
+// 2.	Crear una colección llamada equipos con la siguiente estructura y documentos (elaborar la inserción uno por uno):
+
+// Documento 1: Laptop Asus
+db.equipos.insertOne({
+    Nombre: "Laptop Asus",
+    Categoria: "Portátiles",
+    Precio: 2500,
+    Stock: 30,
+    Accesorios: [
+        "Cargador",
+        "Funda de protección",
+        "Ratón inalámbrico"
+    ]
+});
+print("Equipo 1: Laptop Asus insertado");
+
+// Documento 2: Monitor LG
+db.equipos.insertOne({
+    Nombre: "Monitor LG",
+    Categoria: "Monitores",
+    Precio: 999,
+    Stock: 20,
+    Accesorios: [
+        "Cable HDMI",
+        "Base ajustable",
+        "Adaptador de corriente"
+    ]
+});
+print("Equipo 2: Monitor LG insertado");
+
+// Documento 3: Teclado Logitech
+db.equipos.insertOne({
+    Nombre: "Teclado Logitech",
+    Categoria: "Teclados",
+    Precio: 180,
+    Stock: 30,
+    Accesorios: [
+        "Reposamuñecas",
+        "Extractor de teclas",
+        "Cable USB desmontable"
+    ]
+});
+print("Equipo 3: Teclado Logitech insertado");
+
+// Documento 4: Impresora Epson
+db.equipos.insertOne({
+    Nombre: "Impresora Epson",
+    Categoria: "Impresoras",
+    Precio: 1230,
+    Stock: 100,
+    Accesorios: [
+        "Cartucho de tóner",
+        "Cable USB",
+        "Manual de usuario"
+    ]
+});
+print("Equipo 4: Impresora Epson insertado");
+
+// Documento 5: Tablet Lenovo
+db.equipos.insertOne({
+    Nombre: "Tablet Lenovo",
+    Categoria: "Tablets",
+    Precio: 1750,
+    Stock: 300,
+    Accesorios: [
+        "Cargador rápido",
+        "Funda protectora",
+        "Lápiz táctil"
+    ]
+});
+print("Equipo 5: Tablet Lenovo insertado");
+
+// 3.	Crear una colección llamada clientes con la siguiente estructura y documentos (elaborar la inserción masiva):
+
+db.clientes.insertMany([
+    {
+        Codigo: "001",
+        Nombre: "Juan",
+        Apellido: "Pérez",
+        FechaDeNacimiento: new Date("1990-05-15"),
+        Celular: "987654321",
+        CategoriasDeInteres: [
+            "Laptops",
+            "Monitores",
+            "Impresoras"
+        ]
+    },
+    {
+        Codigo: "002",
+        Nombre: "Ana",
+        Apellido: "Gómez",
+        FechaDeNacimiento: new Date(""),// Sin fecha nacimiento registrado
+        Celular: "987654322",
+        CategoriasDeInteres: [
+            "Tablets",
+            "Teclados",
+            "Ratones",
+            "Monitores"
+        ]
+    },
+    {
+        Codigo: "003",
+        Nombre: "Luis",
+        Apellido: "Martínez",
+        FechaDeNacimiento: new Date("1988-11-30"),
+        Celular: "987654323",
+        CategoriasDeInteres: [
+            "Laptops",
+            "Accesorios",
+            "Impresoras",
+            "Teclados"
+        ]
+    },
+    {
+        Codigo: "004",
+        Nombre: "María",
+        Apellido: "López",
+        FechaDeNacimiento: new Date("1988-02-17"),
+        Celular: "", // Sin celular registrado
+        CategoriasDeInteres: [
+            "Impresoras",
+            "Monitores",
+            "Proyectores"
+        ]
+    },
+    {
+        Codigo: "005",
+        Nombre: "Sofía",
+        Apellido: "Ramírez",
+        FechaDeNacimiento: new Date("1993-09-25"),
+        Celular: "987654326",
+        CategoriasDeInteres: [
+            "Tablets",
+            "Accesorios",
+            "Software",
+            "Monitores"
+        ]
+    }
+]);
+
+print("Colección 'clientes' creada con " + db.clientes.countDocuments() + " documentos\n");

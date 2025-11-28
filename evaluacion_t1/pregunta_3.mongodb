@@ -1,0 +1,31 @@
+use('dbTechStore');
+
+// 1: Monitor LG → Monitor Samsung
+db.equipos.updateOne(
+    { Nombre: "Monitor LG" },
+    { $set: { Nombre: "Monitor Samsung" } }
+);
+db.equipos.findOne({ Nombre: "Monitor Samsung" });
+
+// 2: Precio Tablet Lenovo 1750 → 2350
+db.equipos.updateOne(
+    { Nombre: "Tablet Lenovo" },
+    { $set: { Precio: 2350 } }
+);
+db.equipos.findOne({ Nombre: "Tablet Lenovo" });
+
+//3: Fecha de nacimiento Ana Gómez → 06/06/2006
+db.clientes.updateOne(
+    { Nombre: "Ana", Apellido: "Gómez" },
+    { $set: { FechaDeNacimiento: new Date("2006-06-06") } }
+);
+
+db.clientes.findOne({ Nombre: "Ana", Apellido: "Gómez" });
+
+//4: Celular Juan Pérez → 989654333
+db.clientes.updateOne(
+    { Nombre: "Juan", Apellido: "Pérez" },
+    { $set: { Celular: "989654333" } }
+);
+
+db.clientes.findOne({ Nombre: "Juan", Apellido: "Pérez" });
